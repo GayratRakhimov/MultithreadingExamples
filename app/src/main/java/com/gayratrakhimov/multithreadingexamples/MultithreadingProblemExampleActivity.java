@@ -20,14 +20,16 @@ public class MultithreadingProblemExampleActivity extends AppCompatActivity {
             new Thread(() -> {
                 for (int y = 0; y < 100; y++) {
                     mCount++;
-                    System.out.println(mCount+" "+Thread.currentThread().getName());
-                    try{
+                    System.out.println(mCount + " " + Thread.currentThread().getName());
+                    try {
                         TimeUnit.MILLISECONDS.sleep(100);
-                    } catch (InterruptedException e){
+                    } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
             }).start();
 
+        }
     }
+
 }
