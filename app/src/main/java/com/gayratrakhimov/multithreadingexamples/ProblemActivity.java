@@ -5,10 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.concurrent.TimeUnit;
 
-public class MultithreadingProblemExampleActivity extends AppCompatActivity {
+public class ProblemActivity extends AppCompatActivity {
 
     // this example demonstrates threading problem
-    // this example is taken from openprofession.ru course
 
     private static int mCount = 0;
 

@@ -5,10 +5,11 @@ import android.os.Bundle;
 
 public class ThreadActivity extends AppCompatActivity {
 
+    // Thread creation example
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_thread);
 
         new Thread(new Runnable() {
             @Override
