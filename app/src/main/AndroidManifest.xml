@@ -11,18 +11,26 @@
         android:theme="@style/AppTheme">
         <activity android:name=".multithreading.ProblemActivity" />
         <activity android:name=".multithreading.ThreadActivity" />
-        <activity android:name=".multithreading.SyncronizedActivity"></activity>
-        <activity android:name=".service.ServiceActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".multithreading.SyncronizedActivity" />
+        <activity android:name=".service.ServiceActivity"></activity>
 
         <service
             android:name=".service.CountService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity android:name=".receiver.ReceiverActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".receiver.SimpleReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
     </application>
 
 </manifest>
