@@ -1,4 +1,4 @@
-package com.gayratrakhimov.multithreadingexamples.service;
+package com.gayratrakhimov.multithreadingexamples.receiverservice;
 
 import android.app.Service;
 import android.content.Intent;
@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class CountService extends Service {
 
     public static final String TAG = CountService.class.getSimpleName();
+    public static final String TIME = "TIME";
     private ScheduledExecutorService mScheduledExecutorService;
 
     public CountService() {
@@ -36,8 +37,11 @@ public class CountService extends Service {
             @Override
             public void run() {
                 Log.d(TAG, "run: "+System.currentTimeMillis());
+                Intent intentToSend = new Intent(SimpleReceiver.SIMPLE_ACTION);
+                intentToSend.putExtra(TIME, System.currentTimeMillis());
+                sendBroadcast(intentToSend);
             }
-        },1000, 1000, TimeUnit.MILLISECONDS);
+        },1000, 4000, TimeUnit.MILLISECONDS);
 
         return START_STICKY;
     }
