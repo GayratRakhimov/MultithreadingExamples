@@ -12,6 +12,9 @@ public class SimpleReceiver extends BroadcastReceiver {
 
     private WeakReference<TextView> textViewWeakReference;
 
+    public SimpleReceiver() {
+    }
+
     public SimpleReceiver(TextView textView) {
         this.textViewWeakReference = new WeakReference<TextView>(textView);
     }
