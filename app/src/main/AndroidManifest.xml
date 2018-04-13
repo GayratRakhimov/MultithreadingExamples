@@ -12,6 +12,17 @@
         <activity android:name=".multithreading.ProblemActivity" />
         <activity android:name=".multithreading.ThreadActivity" />
         <activity android:name=".multithreading.SyncronizedActivity" />
+        <activity android:name=".receiverservice.MainActivity" />
+        <activity android:name=".receiverservice.TempActivity" />
+        <activity android:name=".hamer.HamerActivity"/>
+        <activity android:name=".asynctask.MyTaskActivity">
+        </activity>
+        <activity android:name=".recycler.RecyclerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <service
             android:name=".receiverservice.CountService"
@@ -23,12 +34,6 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".receiverservice.MainActivity"/>
-        <activity android:name=".receiverservice.TempActivity" />
-        <activity android:name=".hamer.HamerActivity">
-
-        </activity>
-
         <receiver
             android:name=".receiverservice.StaticReceiver"
             android:enabled="true"
@@ -38,12 +43,6 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".asynctask.MyTaskActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
