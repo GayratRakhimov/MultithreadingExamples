@@ -34,7 +34,7 @@ public class RecyclerFragment extends Fragment {
         RecyclerView recycler = view.findViewById(R.id.recycler);
         recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         recycler.setAdapter(mMockAdapter);
-        mMockAdapter.addData(MockGenerator.generate(20));
+        mMockAdapter.addData(MockGenerator.generate(10));
     }
 
 }
