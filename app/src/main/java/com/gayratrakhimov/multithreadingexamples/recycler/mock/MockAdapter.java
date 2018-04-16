@@ -24,9 +24,7 @@ public class MockAdapter extends RecyclerView.Adapter<MockHolder> {
 
     @Override
     public void onBindViewHolder(MockHolder holder, int position) {
-
         holder.bind(mockList.get(position));
-
     }
 
     @Override
@@ -34,7 +32,10 @@ public class MockAdapter extends RecyclerView.Adapter<MockHolder> {
         return mockList.size();
     }
 
-    public void addData(List<Mock> mocks){
+    public void addData(List<Mock> mocks, boolean refresh){
+        if(refresh){
+            mockList.clear();
+        }
         mockList.addAll(mocks);
         notifyDataSetChanged();
     }
