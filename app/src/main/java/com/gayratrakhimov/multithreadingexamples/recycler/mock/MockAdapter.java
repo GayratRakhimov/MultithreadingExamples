@@ -16,7 +16,6 @@ public class MockAdapter extends RecyclerView.Adapter<MockHolder> {
 
     @Override
     public MockHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View inflate = inflater.inflate(R.layout.listitem_mock, parent, false);
         return new MockHolder(inflate);

@@ -1,6 +1,8 @@
 package com.gayratrakhimov.multithreadingexamples.recycler;
 
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -12,18 +14,18 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.gayratrakhimov.multithreadingexamples.R;
-import com.gayratrakhimov.multithreadingexamples.recycler.mock.MockAdapter;
-import com.gayratrakhimov.multithreadingexamples.recycler.mock.MockGenerator;
 
 import java.util.Random;
 
-public class RecyclerFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class RecyclerFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, android.support.v4.app.LoaderManager.LoaderCallbacks<Cursor> {
 
-    private final MockAdapter mMockAdapter = new MockAdapter();
+//    private final MockAdapter mMockAdapter = new MockAdapter();
 
     private RecyclerView mRecycler;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private LinearLayout mErrorView;
+
+    private final ContactsAdapter mContactsAdapter = new ContactsAdapter();
 
     private Random mRandom = new Random();
 
@@ -49,40 +51,59 @@ public class RecyclerFragment extends Fragment implements SwipeRefreshLayout.OnR
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecycler.setAdapter(mMockAdapter);
-        mMockAdapter.addData(MockGenerator.generate(5), true);
+        mRecycler.setAdapter(mContactsAdapter);
+//        mMockAdapter.addData(MockGenerator.generate(5), true);
     }
 
     @Override
     public void onRefresh() {
-        mSwipeRefreshLayout.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                int count = mRandom.nextInt(4);
-
-                if(count==0){
-                    showError();
-                } else {
-                    showData(count);
-                }
-
-                if(mSwipeRefreshLayout.isRefreshing()){
-                    mSwipeRefreshLayout.setRefreshing(false);
-                }
-
-            }
-        }, 2000);
+//        mSwipeRefreshLayout.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                int count = mRandom.nextInt(4);
+//
+//                if (count == 0) {
+//                    showError();
+//                } else {
+//                    showData(count);
+//                }
+//
+//                if (mSwipeRefreshLayout.isRefreshing()) {
+//                    mSwipeRefreshLayout.setRefreshing(false);
+//                }
+//
+//            }
+//        }, 2000);
+        getLoaderManager().restartLoader(0, null, this);
     }
 
-    private void showError(){
-        mErrorView.setVisibility(View.VISIBLE);
-        mRecycler.setVisibility(View.GONE);
+//    private void showError() {
+//        mErrorView.setVisibility(View.VISIBLE);
+//        mRecycler.setVisibility(View.GONE);
+//    }
+//
+//    private void showData(int count) {
+//        mErrorView.setVisibility(View.GONE);
+//        mRecycler.setVisibility(View.VISIBLE);
+//    }
+
+    @Override
+    public android.support.v4.content.Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+        return new android.support.v4.content.CursorLoader(getActivity(),
+                ContactsContract.Contacts.CONTENT_URI,
+                new String[]{ContactsContract.Contacts._ID, ContactsContract.Contacts.DISPLAY_NAME},
+                null, null, ContactsContract.Contacts._ID);
     }
 
-    private void showData(int count){
-        mMockAdapter.addData(MockGenerator.generate(count), true);
-        mErrorView.setVisibility(View.GONE);
-        mRecycler.setVisibility(View.VISIBLE);
+    @Override
+    public void onLoadFinished(android.support.v4.content.Loader<Cursor> loader, Cursor cursor) {
+        mContactsAdapter.swapCursor(cursor);
+        mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void onLoaderReset(android.support.v4.content.Loader<Cursor> loader) {
+
     }
 
 }
