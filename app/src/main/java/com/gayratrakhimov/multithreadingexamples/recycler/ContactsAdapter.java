@@ -14,6 +14,7 @@ import com.gayratrakhimov.multithreadingexamples.recycler.mock.MockHolder;
 public class ContactsAdapter extends RecyclerView.Adapter<MockHolder> {
 
     private Cursor mCursor;
+    private OnItemClickListener mListener;
 
     @Override
     public MockHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -28,6 +29,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<MockHolder> {
             String name = mCursor.getString(mCursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
             int id = mCursor.getInt(mCursor.getColumnIndex(ContactsContract.Contacts._ID));
             holder.bind(new Mock(name, id));
+            holder.setListener(mListener);
         }
     }
 
@@ -42,6 +44,14 @@ public class ContactsAdapter extends RecyclerView.Adapter<MockHolder> {
             mCursor = cursor;
             notifyDataSetChanged();
         }
+    }
+
+    public void setListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(String id);
     }
 
 }

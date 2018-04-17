@@ -1,5 +1,6 @@
 package com.gayratrakhimov.multithreadingexamples.recycler;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -29,8 +30,18 @@ public class RecyclerFragment extends Fragment implements SwipeRefreshLayout.OnR
 
     private Random mRandom = new Random();
 
+    private ContactsAdapter.OnItemClickListener mListener;
+
     public static RecyclerFragment newInstance() {
         return new RecyclerFragment();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(context instanceof ContactsAdapter.OnItemClickListener){
+            mListener = (ContactsAdapter.OnItemClickListener) context;
+        }
     }
 
     @Nullable
@@ -53,27 +64,11 @@ public class RecyclerFragment extends Fragment implements SwipeRefreshLayout.OnR
         mRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecycler.setAdapter(mContactsAdapter);
 //        mMockAdapter.addData(MockGenerator.generate(5), true);
+        mContactsAdapter.setListener(mListener);
     }
 
     @Override
     public void onRefresh() {
-//        mSwipeRefreshLayout.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                int count = mRandom.nextInt(4);
-//
-//                if (count == 0) {
-//                    showError();
-//                } else {
-//                    showData(count);
-//                }
-//
-//                if (mSwipeRefreshLayout.isRefreshing()) {
-//                    mSwipeRefreshLayout.setRefreshing(false);
-//                }
-//
-//            }
-//        }, 2000);
         getLoaderManager().restartLoader(0, null, this);
     }
 
@@ -104,6 +99,12 @@ public class RecyclerFragment extends Fragment implements SwipeRefreshLayout.OnR
     @Override
     public void onLoaderReset(android.support.v4.content.Loader<Cursor> loader) {
 
+    }
+
+    @Override
+    public void onDetach() {
+        mListener = null;
+        super.onDetach();
     }
 
 }
