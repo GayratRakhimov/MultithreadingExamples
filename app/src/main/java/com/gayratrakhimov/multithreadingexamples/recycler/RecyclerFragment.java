@@ -7,6 +7,7 @@ import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -64,6 +65,7 @@ public class RecyclerFragment extends Fragment implements SwipeRefreshLayout.OnR
         mRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecycler.setAdapter(mContactsAdapter);
 //        mMockAdapter.addData(MockGenerator.generate(5), true);
+        mRecycler.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         mContactsAdapter.setListener(mListener);
     }
 
