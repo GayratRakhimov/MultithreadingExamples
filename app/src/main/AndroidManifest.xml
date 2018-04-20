@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -18,13 +19,9 @@
         <activity android:name=".receiverservice.MainActivity" />
         <activity android:name=".receiverservice.TempActivity" />
         <activity android:name=".hamer.HamerActivity" />
-        <activity android:name=".asynctask.MyTaskActivity"/>
-        <activity android:name=".recycler.RecyclerActivity"/>
+        <activity android:name=".asynctask.MyTaskActivity" />
+        <activity android:name=".recycler.RecyclerActivity" />
         <activity android:name=".file.FileActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <service
@@ -36,7 +33,6 @@
             android:name=".receiverservice.SimpleReceiver"
             android:enabled="true"
             android:exported="true" />
-
         <receiver
             android:name=".receiverservice.StaticReceiver"
             android:enabled="true"
@@ -46,6 +42,13 @@
             </intent-filter>
         </receiver>
 
+        <activity android:name=".permissions.PermissionActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
