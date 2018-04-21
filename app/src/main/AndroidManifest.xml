@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -21,8 +21,7 @@
         <activity android:name=".hamer.HamerActivity" />
         <activity android:name=".asynctask.MyTaskActivity" />
         <activity android:name=".recycler.RecyclerActivity" />
-        <activity android:name=".file.FileActivity">
-        </activity>
+        <activity android:name=".file.FileActivity" />
 
         <service
             android:name=".receiverservice.CountService"
@@ -42,13 +41,15 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".permissions.PermissionActivity">
+        <activity android:name=".permissions.PermissionActivity"></activity>
+        <activity android:name=".permissions.FilesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".database.DatabaseActivity"></activity>
     </application>
 
 </manifest>
