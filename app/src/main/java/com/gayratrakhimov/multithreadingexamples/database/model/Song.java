@@ -1,4 +1,4 @@
-package com.gayratrakhimov.multithreadingexamples.database;
+package com.gayratrakhimov.multithreadingexamples.database.model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -7,16 +7,24 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class Song {
 
-    @PrimaryKey // первичный ключ, идентификатор строки
-    @ColumnInfo(name = " id")  // обозначаем столбец, задаем имя
+    @PrimaryKey
+    @ColumnInfo(name = "id")
     private int mId;
 
-    @ColumnInfo(name = " name")
+    @ColumnInfo(name = "name")
     private String mName;
-    @ColumnInfo(name = " duration")
+
+    @ColumnInfo(name = "duration")
     private String mDuration;
 
-    //тут обычные геттеры и сеттеры
+    public Song() {
+    }
+
+    public Song(int mId, String mName, String mDuration) {
+        this.mId = mId;
+        this.mName = mName;
+        this.mDuration = mDuration;
+    }
 
     public int getmId() {
         return mId;
