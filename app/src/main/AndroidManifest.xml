@@ -42,15 +42,26 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".permissions.PermissionActivity"></activity>
-        <activity android:name=".permissions.FilesActivity">
-        </activity>
+        <activity android:name=".permissions.PermissionActivity" />
+        <activity android:name=".permissions.FilesActivity" />
         <activity android:name=".database.DatabaseActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name=".database.MusicContentProvider"
+            android:authorities="com.gayratrakhimov.multithreadingexamples.musicprovider"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".database.SecondActivity"
+            android:label="@string/title_activity_second"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
